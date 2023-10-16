@@ -14,6 +14,8 @@ public class cartPage {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("This is cartpage");
+		String f1="feature1";
+		System.out.println(f1);
 	}
 
 }
