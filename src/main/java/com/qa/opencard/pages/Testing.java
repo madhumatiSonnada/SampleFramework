@@ -1,3 +1,5 @@
+package com.qa.opencard.pages;
+
 public class Testing {
 
 	public static void main(String[] args) {
