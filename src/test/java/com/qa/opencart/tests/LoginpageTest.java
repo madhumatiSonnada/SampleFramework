@@ -47,13 +47,13 @@ public class LoginpageTest extends BaseTest
 	//@Test
 	//@Description("Login test")
 	//@Severity(SeverityLevel.BLOCKER)
-	public void udoLogin()
-	{
+	//public void udoLogin()
+	//{
 		
-		accpage=loginpage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+//		accpage=loginpage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
 		
-		Assert.assertTrue(accpage.isAccountpageheaderExists());
-	}
+	//	Assert.assertTrue(accpage.isAccountpageheaderExists());
+	//}
 	@Test
 	@Description("Registration link")
 	@Severity(SeverityLevel.CRITICAL)
