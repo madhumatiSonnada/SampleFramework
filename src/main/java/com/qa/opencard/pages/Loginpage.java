@@ -19,7 +19,7 @@ public class Loginpage {
 	private By login = By.xpath("//input[@value='Login']");
 	private By forgotpass = By.linkText("Forgotten Password");
 	private By register = By.linkText("Register");
-	private By Logout = By.linkText("logex");
+	
 	
 	private By Errormsg=By.cssSelector("div.alert.alert-danger.alert-dismissible");
 
