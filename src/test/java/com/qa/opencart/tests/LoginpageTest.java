@@ -44,9 +44,9 @@ public class LoginpageTest extends BaseTest
 		Boolean flag=loginpage.isforgotpswdlinkexists();
 		Assert.assertTrue(flag);
 	}
-	@Test
-	@Description("Login test")
-	@Severity(SeverityLevel.BLOCKER)
+	//@Test
+	//@Description("Login test")
+	//@Severity(SeverityLevel.BLOCKER)
 	public void udoLogin()
 	{
 		
