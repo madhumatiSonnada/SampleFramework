@@ -24,7 +24,7 @@
 		</classes>
 	</test>
 	
-	<!--<test name="Open Cart Productinfo Page Test _ chrome_89">
+	<test name="Open Cart Productinfo Page Test _ chrome_89">
 		<classes>
 			<class name="com.qa.opencart.tests.ProductinfopageTest" />
 		</classes>
@@ -34,6 +34,12 @@
 		<classes>
 			<class name="com.qa.opencart.tests.registrationpageTest" />
 		</classes>
-	</test>-->
+	</test>
+	
+	<test name="Open Cart Login Page Test _ chrome_89">
+		<classes>
+			<class name="com.qa.opencart.tests.LoginpageNegativeTest" />
+		</classes>
+	</test>
 	
 </suite>
