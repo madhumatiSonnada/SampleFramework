@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -13,6 +15,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import com.qa.opencart.utils.Browser;
@@ -39,18 +42,31 @@ public class DriverFactory
 		if(browsername.equalsIgnoreCase(Browser.CHROME_BROWSER_VALUE))
 		{
 			log.info("Chrome Browser");
+			
+		if(Boolean.parseBoolean(prop.getProperty("remote")))
+		{
+			init_remoteWebDriver(Browser.CHROME_BROWSER_VALUE);
+		}
+		else {
 			WebDriverManager.chromedriver().setup();
 			//or 
 			//System.setProperty(Browser.CHROME_DRIVER_BINARY_KEY, Browser.CHROME_DRIVER_PATH);
 			//driver=new ChromeDriver(optmanager.getChromeOptions());
 			tldriver.set(new ChromeDriver(optmanager.getChromeOptions()));
 		}
+		}
 		else if(browsername.equals(Browser.FIREFOX_BROWSER_VALUE))
 		{
+			if(Boolean.parseBoolean(prop.getProperty("remote")))
+			{
+				init_remoteWebDriver(Browser.FIREFOX_BROWSER_VALUE);
+			}
+			else {
 			WebDriverManager.chromedriver().setup();
-			System.setProperty(Browser.FIREFOX_DRIVER_BINARY_KEY, Browser.FIREFOX_DRIVER_PATH);
+			//System.setProperty(Browser.FIREFOX_DRIVER_BINARY_KEY, Browser.FIREFOX_DRIVER_PATH);
 			//driver=new FirefoxDriver(optmanager.getFirefoxoptions());
 			tldriver.set(new FirefoxDriver(optmanager.getFirefoxoptions()));
+		}
 		}
 		else if(browsername.equals(Browser.SAFARI_BROWSER_VALUE))
 		{
@@ -71,6 +87,30 @@ public class DriverFactory
 		
 	}
 	
+	private void init_remoteWebDriver(String browsername) {
+		System.out.println("Running test cases on remote grid machine" +browsername);
+		
+		if(browsername.equalsIgnoreCase("chrome"))
+		{
+			try {
+				tldriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),optmanager.getChromeOptions()));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(browsername.equalsIgnoreCase("firefox"))
+		{
+			try {
+				tldriver.set(new RemoteWebDriver(new URL(prop.getProperty("huburl")),optmanager.getFirefoxoptions()));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
 	public static WebDriver getThreadDriver()
 	{
 	return tldriver.get();

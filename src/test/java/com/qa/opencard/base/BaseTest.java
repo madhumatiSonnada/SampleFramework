@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 
 import com.qa.opencard.pages.Accountspage;
@@ -25,11 +26,18 @@ public class BaseTest
 	public Productinfopage productinfopage;
 	public Registrationpage registrationpage;
 	public SoftAssert softAssert;
+	
+	@Parameters({"browser"})
 	@BeforeTest
-	public void setup()
+	public void setup(String browser)
 	{
 		df=new DriverFactory();
 		prop=df.init_prop();
+		
+		if(browser!= null)
+		{
+			prop.setProperty("browser", browser);
+		}
 		driver =df.init_driver(prop);
 		loginpage=new Loginpage(driver);
 		
